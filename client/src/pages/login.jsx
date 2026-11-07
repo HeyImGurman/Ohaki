@@ -3,19 +3,9 @@ import Logo from "../assets/OhakiLogo.png"
 
 function LoginPage() {
     return (
-        <div>
-
-        <div className="flex flex-row w-full">
-        <img
-                src={Logo}
-                alt="Ohaki"
-                className="w-[200px] h-auto fixed m-8"
-            />
-
-        <p ml-auto>Built for developers</p>
-        </div>
+        <div className="w-full h-full bg-gradient-to-br from-red to-blue">
         
-        <div className="fixed z-50 flex w-full h-full pt-[15%] pl-32 flex-col gap-2">
+        <div className="fixed z-5 flex w-full h-full pt-[15%] pl-32 flex-col gap-2">
 
             <p className="text-white text-7xl">Ship with clarity.</p>
             <p className="text-blue-400 text-7xl">Operate with</p>

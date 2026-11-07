@@ -53,7 +53,7 @@ function LoginForm() {
 
                 <span className="flex gap-1 justify-center w-full">
                 <p>New to Ohaki?</p>
-                <a href="http://localhost:5173" className="text-blue-400">Register here</a>
+                <link to="/register" className="text-blue-400">Register here</link>
                 </span>
 
                 <hr></hr>
