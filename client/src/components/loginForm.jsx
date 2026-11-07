@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import InputBar from "../common/inputBar.jsx";
 
 function LoginForm() {
@@ -53,7 +54,7 @@ function LoginForm() {
 
                 <span className="flex gap-1 justify-center w-full">
                 <p>New to Ohaki?</p>
-                <link to="/register" className="text-blue-400">Register here</link>
+                <Link to="/register" className="text-blue-400">Register here</Link>
                 </span>
 
                 <hr></hr>

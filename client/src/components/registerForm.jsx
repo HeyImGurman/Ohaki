@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import InputBar from "../common/inputBar.jsx";
 
 function RegisterForm() {
@@ -63,7 +64,7 @@ function RegisterForm() {
 
                 <span className="flex gap-1 justify-center w-full">
                 <p>Already have an account?</p>
-                <link to="/login" className="text-blue-400">Login here</link>
+                <Link to="/login" className="text-blue-400">Login here</Link>
                 </span>
 
             </form>
