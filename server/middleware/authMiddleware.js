@@ -1,29 +1,27 @@
-import express from "express";
-import jwt from "jsonwebtoken";
-import pool from "../config/db.js";
-import dotenv from "dotenv";
-import cookieParser from "cookie-parser";
+const jwt = require("jsonwebtoken");
+const pool = require("../config/db.js");
 
-export const protect = async (req, res) => {
-    try {
-        const token = req.cookies.token;
+const protect = async (req, res, next) => {
+  try {
+    const token = req.cookies?.token;
 
-        if(!token){
-            res.status(400).json({message : 'User not found'});
-        }
-
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-        req.user = await pool.query('SELECT * FROM users WHERE id = $1', [decoded.id]);
-
-        if(user.rows.length === 0){
-            res.status(400).json({message: "user not found"});
-        }
-
-        req.user = user.rows[0];
-        next();
+    if (!token) {
+      return res.status(401).json({ message: "User not authorized" });
     }
-    catch(error) {
-        res.status(401).json({message: 'User not authorized'});
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || "ohaki-secret");
+    const userResult = await pool.query("SELECT id, name, email FROM users WHERE id = $1", [decoded.id]);
+
+    if (userResult.rowCount === 0) {
+      return res.status(401).json({ message: "User not found" });
     }
-}
+
+    req.user = userResult.rows[0];
+    return next();
+  } catch (error) {
+    console.error("Auth middleware error:", error.message);
+    return res.status(401).json({ message: "User not authorized" });
+  }
+};
+
+module.exports = { protect };
