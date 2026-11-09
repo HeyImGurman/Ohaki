@@ -1,10 +1,16 @@
+const cors = require("cors");
 const express = require("express");
-const pool = require("./db");
+const pool = require("./config/db.js");
+const dotenv = require("dotenv");
+const cookieParser = require("cookie-parser");
 
+dotenv.config();
 const app = express();
 const PORT = 5000;
 
+app.use(cors())
 app.use(express.json());
+app.use(cookieParser());
 
 // Test route
 app.get("/", (req, res) => {
